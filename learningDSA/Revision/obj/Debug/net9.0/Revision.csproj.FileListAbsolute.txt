@@ -1,0 +1,14 @@
+c:\vscode\learningDSA\Revision\bin\Debug\net9.0\Revision.exe
+c:\vscode\learningDSA\Revision\bin\Debug\net9.0\Revision.deps.json
+c:\vscode\learningDSA\Revision\bin\Debug\net9.0\Revision.runtimeconfig.json
+c:\vscode\learningDSA\Revision\bin\Debug\net9.0\Revision.dll
+c:\vscode\learningDSA\Revision\bin\Debug\net9.0\Revision.pdb
+c:\vscode\learningDSA\Revision\obj\Debug\net9.0\Revision.GeneratedMSBuildEditorConfig.editorconfig
+c:\vscode\learningDSA\Revision\obj\Debug\net9.0\Revision.AssemblyInfoInputs.cache
+c:\vscode\learningDSA\Revision\obj\Debug\net9.0\Revision.AssemblyInfo.cs
+c:\vscode\learningDSA\Revision\obj\Debug\net9.0\Revision.csproj.CoreCompileInputs.cache
+c:\vscode\learningDSA\Revision\obj\Debug\net9.0\Revision.dll
+c:\vscode\learningDSA\Revision\obj\Debug\net9.0\refint\Revision.dll
+c:\vscode\learningDSA\Revision\obj\Debug\net9.0\Revision.pdb
+c:\vscode\learningDSA\Revision\obj\Debug\net9.0\Revision.genruntimeconfig.cache
+c:\vscode\learningDSA\Revision\obj\Debug\net9.0\ref\Revision.dll
