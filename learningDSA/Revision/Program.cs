@@ -38,6 +38,10 @@ class Program
 
         StacksLearn st = new StacksLearn();
         st.BasicStackOperations();
+        st.ReverseAstring("hello");
+
+        QueueLearn qu = new QueueLearn();
+        qu.BasicQueueOperations();
         // foreach (var x in studTuple)
         // {
         //     System.Console.WriteLine($"{x.Item2}, {x.Item1}");
@@ -903,9 +907,36 @@ class StacksLearn
         System.Console.WriteLine($"New Top -> {stacks.Peek()}");
         System.Console.WriteLine($"New Stack Lenght -> {stacks.Count()}");
     }
+    public void ReverseAstring(string str)
+    {
+        Stack<char> reverse = new Stack<char>(str.ToCharArray());
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < str.Length; i++)
+        {
+            sb.Append(reverse.Pop());
+        }
+        System.Console.WriteLine($"Reversed string is {sb}");
+    }
+
+    public void CheckBalancedParanthesis(string str)
+    {
+        
+    }
 }
 
 class QueueLearn
 {
-    
+    public void BasicQueueOperations()
+    {
+        Queue<string> queue = new Queue<string>();
+        queue.Enqueue("Process Page 1");
+        queue.Enqueue("Process Page 2");
+        queue.Enqueue("Process Page 3");
+        queue.Enqueue("Process Page 4");
+
+        System.Console.WriteLine($"The first in the queue is -> {queue.Peek()}");
+        System.Console.WriteLine($"Removing the current first in queue is -> {queue.Dequeue()}");
+        System.Console.WriteLine($"Next in queue is -> {queue.Peek()}");
+        System.Console.WriteLine($"Current Queue Length is {queue.Count()}");
+    }
 }
