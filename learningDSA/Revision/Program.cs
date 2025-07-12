@@ -39,6 +39,7 @@ class Program
         StacksLearn st = new StacksLearn();
         st.BasicStackOperations();
         st.ReverseAstring("hello");
+        st.CheckBalancedParenthesis("({[]})");
 
         QueueLearn qu = new QueueLearn();
         qu.BasicQueueOperations();
@@ -918,9 +919,50 @@ class StacksLearn
         System.Console.WriteLine($"Reversed string is {sb}");
     }
 
-    public void CheckBalancedParanthesis(string str)
+    public void CheckBalancedParenthesis(string str)
     {
-        
+        bool isBalanced = true;
+        Dictionary<char, char> bracketPair = new Dictionary<char, char>();
+        //str = ({[])}
+        bracketPair.Add('(', ')');
+        bracketPair.Add('{', '}');
+        bracketPair.Add('[', ']');
+        char[] ch = str.ToCharArray();
+        Stack<char> stChar = new Stack<char>();
+        foreach (char c in ch)
+        {
+            if (bracketPair.ContainsKey(c))
+            {
+                stChar.Push(c);
+            }
+            else if (bracketPair.ContainsValue(c))
+            {
+                if (stChar.Count == 0)
+                {
+                    isBalanced = false;
+                }
+                else
+                {
+                    char lastOpen = stChar.Pop();
+                    if (bracketPair[lastOpen] != c)
+                    {
+                        isBalanced = false;
+                        break; // optional: exit early
+                    }
+                }
+            }
+        }
+        if (stChar.Count != 0)
+        {
+            if (isBalanced)
+            {
+                System.Console.WriteLine($"String {str} is a balanced parenthesis");
+            }
+            else
+            {
+                System.Console.WriteLine("Unbalanced");
+            }
+       }
     }
 }
 
