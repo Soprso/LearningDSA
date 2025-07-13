@@ -40,6 +40,9 @@ class Program
         st.BasicStackOperations();
         st.ReverseAstring("hello");
         st.CheckBalancedParenthesis("({[]})");
+        st.ReverseWordsSentence("Hello World from GPT");
+        st.RemoveAdjacentDuplicates("abbaca");
+        st.NextGreaterElement([4,5,2,10,8]);
 
         QueueLearn qu = new QueueLearn();
         qu.BasicQueueOperations();
@@ -962,7 +965,105 @@ class StacksLearn
             {
                 System.Console.WriteLine("Unbalanced");
             }
-       }
+        }
+    }
+
+    public void ReverseWordsSentence(string str)
+    {
+        string[] strArr = str.Split(" ");
+        Stack<string> stack = new Stack<string>(strArr);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < strArr.Length; i++)
+        {
+            sb.Append(stack.Pop());
+            sb.Append(" ");
+        }
+        System.Console.WriteLine("Reversed words in a sentence :");
+        System.Console.WriteLine(sb);
+    }
+
+    public void RemoveAdjacentDuplicates(string str)
+    {
+        Stack<char> checkDupe = new Stack<char>();
+        char[] ch = str.ToCharArray();
+        foreach (char c in ch)
+        {
+            if (checkDupe.Count > 0 && checkDupe.Peek() == c)
+            {
+                checkDupe.Pop();
+            }
+            else
+            {
+                checkDupe.Push(c);
+            }
+        }
+        System.Console.WriteLine($"Final String is {string.Join("", checkDupe.Reverse().ToArray())}");
+    }
+
+
+    // 📘 Problem Statement:
+    // Given an array of integers, for each element, find the next greater element to its right.
+    // If no such element exists, return -1.
+
+    // 🔍 Example:
+    // Input:  [4, 5, 2, 10, 8]
+    // Output: [5,10,10,-1,-1]
+    // ➡ For 4 → Next greater is 5
+    // ➡ For 5 → Next greater is 10
+    // ➡ For 2 → Next greater is 10
+    // ➡ For 10 → No greater on right → -1
+    // ➡ For 8 → No greater → -1
+    public void NextGreaterElement(int[] arr)
+    {
+        List<int> result = new List<int>();
+        int n = arr.Length;
+
+        for (int i = 0; i < n; i++)
+        {
+            bool found = false;
+            for (int j = i + 1; j < n; j++)
+            {
+                if (arr[j] > arr[i])
+                {
+                    result.Add(arr[j]);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                result.Add(-1);
+            }
+        }
+        System.Console.WriteLine();
+        System.Console.WriteLine("Output is:");
+        foreach (int i in result)
+        {
+            System.Console.Write(i + " ");
+        }
+    }
+
+    public void NextGreaterElementUsingStack(int[] arr)
+    {
+       
+        int n = arr.Length;
+        for (int i = n - 1; i >= 0; i--)
+        {
+            Stack<int> nextGreaterElements = new Stack<int>();
+            if (nextGreaterElements.Count() > 0 && nextGreaterElements.Peek() <= arr[i])
+            {
+                nextGreaterElements.Pop();
+            }
+            else if (nextGreaterElements.Count() == 0)
+            {
+                nextGreaterElements.Push(-1);
+            }
+            else if (nextGreaterElements.Count() > 0)
+            {
+                nextGreaterElements.Push(nextGreaterElements.Peek());
+            }
+        }
+
     }
 }
 
