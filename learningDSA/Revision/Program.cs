@@ -15,6 +15,21 @@ class Program
     static void Main()
     {
 
+        LinqLearn ll = new LinqLearn();
+        var squareResult = ll.SquaresOfOddNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+        System.Console.WriteLine();
+        System.Console.WriteLine("Squares of odd are");
+        foreach (int i in squareResult)
+        {
+            System.Console.Write(i+" ");
+        }
+        var morethan3 = ll.StringsWithMoreThan3Char(["sky", "blue", "sun", "cloud", "hi" ]);
+        System.Console.WriteLine();
+        System.Console.WriteLine("Strings with more than 3 chars are:");
+        foreach (string s in morethan3)
+        {
+            System.Console.Write(s+", ");
+        }
         var student = new GenericRepository<Student>();
         student.AddElement(new Student { Id = 1, Name = "Soumyadeep", CourseName = "Math" });
         student.AddElement(new Student { Id = 2, Name = "John", CourseName = "Science" });
