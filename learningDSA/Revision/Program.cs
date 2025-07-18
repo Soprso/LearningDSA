@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Revision;
+using System.IO.Pipelines;
 
 
 
@@ -14,6 +15,8 @@ class Program
 {
     static void Main()
     {
+
+
 
         LinqLearn ll = new LinqLearn();
         var squareResult = ll.SquaresOfOddNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9]);
@@ -148,45 +151,57 @@ class Program
         //     Console.WriteLine($"ID -> {e.Id}, Name -> {e.Name}, Department -> {e.Department}, Salary -> {e.Salary}");
         // }
 
-        // Arrays arrRev = new Arrays();
+        Arrays arrRev = new Arrays();
+        var x =arrRev.Generate(5);
+        System.Console.WriteLine();
+        System.Console.WriteLine("List is ");
+        foreach (var y in x)
+        {
+            System.Console.Write("[ ");
+            foreach (int i in y)
+            {
+                System.Console.Write(i + ", ");
+            }
+            System.Console.Write(" ]");
+        }
         // arrRev.BubbleSort([2, 3, 8, 1, 0, 9, 4, 5]);
-        // arrRev.SelectionSort([2, 3, 8, 1, 0, 9, 4, 5]);
-        // // arrRev.ReverseArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
-        // // int[] res=arrRev.TwoSumLeetCode([2,5,7,9,11],9);
-        // // System.Console.WriteLine();
-        // // foreach (int i in res)
-        // // {
-        // //     System.Console.Write(i+" ");
-        // // }
-        // arrRev.SecondLargestNumber([7]);
-        // var result = arrRev.PairsWithAGivenSum([2, 5, 3, 7, 8, -2], 5);
-        // if (result.Count() > 0)
-        // {
-        //     System.Console.WriteLine("Pairs With Given Sum are:");
-        //     foreach (var pair in result)
-        //     {
-        //         System.Console.WriteLine($"Pair -> {pair.Item1}, {pair.Item2}");
-        //     }
-        // }
-        // else
-        //     System.Console.WriteLine("Not found");
+            // arrRev.SelectionSort([2, 3, 8, 1, 0, 9, 4, 5]);
+            // // arrRev.ReverseArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
+            // // int[] res=arrRev.TwoSumLeetCode([2,5,7,9,11],9);
+            // // System.Console.WriteLine();
+            // // foreach (int i in res)
+            // // {
+            // //     System.Console.Write(i+" ");
+            // // }
+            // arrRev.SecondLargestNumber([7]);
+            // var result = arrRev.PairsWithAGivenSum([2, 5, 3, 7, 8, -2], 5);
+            // if (result.Count() > 0)
+            // {
+            //     System.Console.WriteLine("Pairs With Given Sum are:");
+            //     foreach (var pair in result)
+            //     {
+            //         System.Console.WriteLine($"Pair -> {pair.Item1}, {pair.Item2}");
+            //     }
+            // }
+            // else
+            //     System.Console.WriteLine("Not found");
 
-        // arrRev.MoveZeroesToEnd([0, 1, 0, 3, 12]);
-        // arrRev.OptimizedBubbleSort([5, 4, 3, 7, 3, 0, 8, 9, 10]);
-        // arrRev.SelectionSortDescendingOrder([5, 4, 3, 7, 3, 0, 8, 9, 10]);
-        // arrRev.SortAndRemoveDuplicates([5, 4, 3, 7, 3, 0, 8, 9, 9, 10]);
-        // arrRev.MissingNumber([1, 2, 3, 4, 5, 7]);
-        // arrRev.MissingNumberBruteForce([1, 2, 3, 4, 5, 7]);
-        // arrRev.PalindromeArray([1, 2, 3, 4, 3, 2, 1]);
+            // arrRev.MoveZeroesToEnd([0, 1, 0, 3, 12]);
+            // arrRev.OptimizedBubbleSort([5, 4, 3, 7, 3, 0, 8, 9, 10]);
+            // arrRev.SelectionSortDescendingOrder([5, 4, 3, 7, 3, 0, 8, 9, 10]);
+            // arrRev.SortAndRemoveDuplicates([5, 4, 3, 7, 3, 0, 8, 9, 9, 10]);
+            // arrRev.MissingNumber([1, 2, 3, 4, 5, 7]);
+            // arrRev.MissingNumberBruteForce([1, 2, 3, 4, 5, 7]);
+            // arrRev.PalindromeArray([1, 2, 3, 4, 3, 2, 1]);
 
 
-        // dict.CharacterCounter("soumyadeep ghosh");
-        // dict.FirstNonRepeatingChar("soumyadeep ghosh");
-        // dict.GroupAnagrams(["bat", "tab", "tap", "pat", "cat", "act"]);
+            // dict.CharacterCounter("soumyadeep ghosh");
+            // dict.FirstNonRepeatingChar("soumyadeep ghosh");
+            // dict.GroupAnagrams(["bat", "tab", "tap", "pat", "cat", "act"]);
 
-        // // System.Console.WriteLine(dict.BubbleStringSort("cat"));
+            // // System.Console.WriteLine(dict.BubbleStringSort("cat"));
 
-        HashSets h = new HashSets();
+            HashSets h = new HashSets();
         // h.RemoveDuplicateCharacters("Soumyadeep Ghosh");
         h.UniqueElementCheck([1,2,3,4,5,6]);
 
@@ -203,6 +218,111 @@ class Program
 
 class Arrays
 {
+
+    public void MoveZeroes(int[] nums)
+    {
+        int posNonZer = 0;
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (nums[i] != 0)
+            {
+                nums[posNonZer] = nums[i];
+                posNonZer++;
+            }
+
+        }
+        for (int i = posNonZer; i < nums.Length; i++)
+        {
+            nums[i] = 0;
+        }
+    }
+
+
+    public int[] Intersection(int[] nums1, int[] nums2)
+    {
+        Dictionary<int, int> freq = new Dictionary<int, int>();
+        List<int> res = new List<int>();
+        foreach (int i in nums1)
+        {
+            if (freq.ContainsKey(i))
+            {
+                freq[i]++;
+            }
+            else
+            {
+                freq[i] = 1;
+            }
+        }
+        foreach (int i in nums2)
+        {
+            if (freq.ContainsKey(i) && freq[i] > 0)
+            {
+                res.Add(i);
+                freq[i]--;
+            }
+        }
+
+        return res.ToArray();
+    }
+
+    public IList<IList<int>> Generate(int numRows)
+    {
+        List<List<int>> res = new List<List<int>>();
+        for (int i = 0; i < numRows; i++)
+        {
+            List<int> innerRes = new List<int>();
+            for (int j = 0; j <= i; j++)
+            {
+                if (j == 0 || j == i)
+                {
+                    innerRes.Add(1);
+                }
+                else if (res != null)
+                {
+                    innerRes.Add(res.LastOrDefault()[j - 1] + res.LastOrDefault()[j]);
+                }
+            }
+            res.Add(innerRes);
+
+        }
+        return res.Select(row => (IList<int>)row).ToList();
+    }
+
+    public IList<int> GetRow(int rowIndex)
+    {
+        List<int> row = new List<int>();
+        row.Add(1); // C(k, 0)
+        for (int i = 1; i <= rowIndex; i++)
+        {
+            long prev = row[i - 1];
+            long next = prev * (rowIndex - i + 1) / i;
+            row.Add((int)next);
+        }
+        return row.Select(e => e).ToList();
+    }
+
+    public int ThirdMax(int[] nums)
+    {
+        int ThirdMax = int.MinValue;
+        return ThirdMax = nums.Distinct().ToArray().Length>2 ? nums.Distinct().OrderByDescending(e => e).Take(3).LastOrDefault():nums.Distinct().OrderByDescending(e=>e).FirstOrDefault();
+    }
+
+    public IList<int> FindDisappearedNUmbers(int[] nums)
+    {
+        List<int> res = new List<int>();
+        HashSet<int> numsSet = new HashSet<int>(nums);
+        for (int i = 1; i <= nums.Length; i++)
+        {
+            if (!numsSet.Contains(i))
+            {
+                res.Add(i);
+            }
+        }
+        return res;
+    }
+
+
+
     public void BubbleSort(int[] arr)
     {
         int n = arr.Length;
