@@ -61,7 +61,8 @@ public class LinqLearn
         return nums.GroupBy(n => n % 3).OrderByDescending(n => n.Count()).First().OrderBy(n => n).ToArray();
     }
 
-    public void GroupStringsByFirstLetter(string[] strs)
+    public Dictionary<char,List<string>> GroupStringsByFirstLetter(string[] strs)
     {
+        return strs.GroupBy(s => s[0]).ToDictionary(pair => pair.Key, pair => pair.ToList());
     }
 }

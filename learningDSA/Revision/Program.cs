@@ -60,7 +60,7 @@ class Program
         st.CheckBalancedParenthesis("({[]})");
         st.ReverseWordsSentence("Hello World from GPT");
         st.RemoveAdjacentDuplicates("abbaca");
-        st.NextGreaterElement([4,5,2,10,8]);
+        st.NextGreaterElement([4, 5, 2, 10, 8]);
 
         QueueLearn qu = new QueueLearn();
         qu.BasicQueueOperations();
@@ -203,7 +203,7 @@ class Program
 
             HashSets h = new HashSets();
         // h.RemoveDuplicateCharacters("Soumyadeep Ghosh");
-        h.UniqueElementCheck([1,2,3,4,5,6]);
+        h.UniqueElementCheck([1, 2, 3, 4, 5, 6]);
 
         // StringProblems sp = new StringProblems();
         // sp.ReverseString("hello World");
@@ -213,6 +213,8 @@ class Program
         // sp.CheckAnagram("madam", "madma");
         // sp.CountOccurences("Soumyadeep Ghosh");
         // sp.SubstringsofString("abc");
+        BinarySearchLearn bs = new BinarySearchLearn();
+        bs.BinarySearchBasic([2, 3, 4, 5, 6, 7, 8, 9,0], 4);
     }
 }
 
@@ -1216,5 +1218,57 @@ class QueueLearn
         System.Console.WriteLine($"Removing the current first in queue is -> {queue.Dequeue()}");
         System.Console.WriteLine($"Next in queue is -> {queue.Peek()}");
         System.Console.WriteLine($"Current Queue Length is {queue.Count()}");
+    }
+}
+
+class BinarySearchLearn
+{
+    public int[] BubbleSort(int[] arr)
+    {
+        int n = arr.Length;
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = 0; j < n-1-i; j++)
+            {
+                if (arr[j] > arr[j + 1])
+                {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+    public void BinarySearchBasic(int[] arr, int target)
+    {
+        int[] sorted = BubbleSort(arr);
+        int start = 0;
+        int end = sorted.Length - 1;
+
+        bool found = false;
+
+        while (start <= end)
+        {
+            int mid = (start + end) / 2;
+            if (sorted[mid] == target)
+            {
+                found = true;
+                System.Console.WriteLine($"{target} Found at index {mid}");
+                break;
+            }
+            else if (target < sorted[mid])
+            {
+                end = mid - 1;
+            }
+            else if (target > sorted[mid])
+            {
+                start = mid + 1;
+            }
+        }
+        if (!found)
+        {
+            System.Console.WriteLine("Element not found");
+        }
     }
 }
