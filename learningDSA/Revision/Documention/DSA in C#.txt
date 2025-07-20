@@ -524,3 +524,61 @@ Insertion is a fundamental operation that involves adding new nodes to the list.
                 }
                 current.Next = newNode;
             }
+
+    -> Insertion at the speicific position of the SinglyLinkedList
+    -> https://media.geeksforgeeks.org/wp-content/uploads/20241022163649252002/Insertion-at-a-Specific-Position-of-the-Singly-Linked-List-copy.webp
+        -> Step by step Approach
+            -> Create a new node and assign it a value.
+            -> If inserting at the beginning (positon =1)
+                -> Point the new node's next to the current head
+                -> Assign the current head to the new node.
+                -> Return (insertion done).
+            -> Otherwise, traverse the list:
+                -> start from the head and move to position-1 th node (just before the desired position)
+                -> if the position is beyond the list length, return an error or append at the end.
+            -> Insert the new node:
+                -> point the new node's next to the next node of the current position.
+                -> update the previous node's next to the new node.
+            -> return the updated list.
+        
+        -> Algorithm:
+            -> if(pos<1) return head; // check for valid position
+            -> if (pos==1) -> Node newNode = new Node<T>(data)
+                            -> newNode.Next = head
+                            -> head= newNode;
+            -> var current= head;
+            -> for(int i=1;i<pos-1 && curr!=null;i++) -> current = current.Next // traverse to node that will be present just before the new node.
+            -> if(current== null) return head;
+            -> Update the pointers newNode.Next = current.Next;
+            -> current.Next= newNode;
+            -> return head
+
+             // Insert node at a specific position
+            public Node<T> InsertAtPos(Node<T> head, int pos, T data)
+            {
+                Node<T> newNode = new Node<T>(data);
+                if (pos < 1)
+                    return head;
+                if (pos == 1)
+                {
+                    newNode.Next = head;
+                    return newNode;
+                }
+                var current = head;
+                for (int i = 1; i < pos - 1 && current != null; i++)
+                {
+                    current = current.Next;
+                }
+                if (current == null)
+                    return head;
+                newNode.Next = current.Next;
+                current.Next = newNode;
+
+                return head;
+            }
+
+            //use a wrapper method again since Node<T> head is private
+            public void InsertAtPos(int pos, T data)
+            {
+                head= InsertAtPos(head, pos, data);
+            }

@@ -134,4 +134,33 @@ public class SinglyLinkedList<T>
         return 1 + CountNodesRecursive(head.Next);
     }
 
+    // Insert node at a specific position
+    public Node<T> InsertAtPos(Node<T> head, int pos, T data)
+    {
+        Node<T> newNode = new Node<T>(data);
+        if (pos < 1)
+            return head;
+        if (pos == 1)
+        {
+            newNode.Next = head;
+            return newNode;
+        }
+        var current = head;
+        for (int i = 1; i < pos - 1 && current != null; i++)
+        {
+            current = current.Next;
+        }
+        if (current == null)
+            return head;
+        newNode.Next = current.Next;
+        current.Next = newNode;
+
+        return head;
+    }
+
+    //use a wrapper method again since Node<T> head is private
+    public void InsertAtPos(int pos, T data)
+    {
+        head= InsertAtPos(head, pos, data);
+    }
 }
