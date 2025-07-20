@@ -30,7 +30,11 @@ class Program
 
         sll.Delete(10);
         sll.PrintList();
+        sll.PrintUsingRecursion();
+        System.Console.WriteLine(sll.SeachUsingRecursion(20));
+        System.Console.WriteLine();
 
+        System.Console.WriteLine($"Length of Singly Linked list is -> {sll.CountNodesRecursive()}");
         #endregion
 
         #region Jagged Arrays

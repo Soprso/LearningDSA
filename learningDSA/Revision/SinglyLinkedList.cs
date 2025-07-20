@@ -1,4 +1,5 @@
 using System;
+using System.Transactions;
 
 namespace Revision;
 
@@ -76,4 +77,61 @@ public class SinglyLinkedList<T>
         }
         System.Console.WriteLine("null");
     }
+
+    public void PrintUsingRecursion(Node<T> node)
+    {
+        if (node == null)
+        {
+            System.Console.WriteLine("Exiting Head is null..");
+            return;
+        }
+        System.Console.WriteLine("Print using recursion started");
+        System.Console.WriteLine(node.Data + " -> <-");
+        PrintUsingRecursion(node.Next);
+    }
+
+    //Using a public wrapper since Node<T> head is private. 
+    public void PrintUsingRecursion()
+    {
+        PrintUsingRecursion(head);  //calling the og method with argument inside a mthod since it wont be accessible in Main.
+    }
+
+    // Again adding a wrapper since Node<T> head is private. 
+    public bool SeachUsingRecursion(T tar)
+    {
+        return SearchUsingRecursion(head, tar);
+    }
+
+    public bool SearchUsingRecursion(Node<T> head, T tar)
+    {
+        if (head == null)
+            return false;
+        if (head.Data!.Equals(tar))  // equivalent to (head == tar) but asks to ignore null and type conversion.
+            return true;
+        return SearchUsingRecursion(head.Next, tar);
+    }
+
+    public int CountNodes()
+    {
+        var current = head;
+        int length = 0;
+        while (current != null)
+        {
+            length++;
+            current = current.Next;
+        }
+        return length;
+    }
+
+    public int CountNodesRecursive()
+    {
+        return CountNodesRecursive(head);
+    }
+    public int CountNodesRecursive(Node<T> head)
+    {
+        if (head == null)
+            return 0;
+        return 1 + CountNodesRecursive(head.Next);
+    }
+
 }

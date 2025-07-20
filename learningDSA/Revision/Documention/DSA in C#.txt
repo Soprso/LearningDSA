@@ -343,3 +343,184 @@ Implementing the SinglyLinkedList<T> class in Program.cs
         sll.Delete(10);
         sll.PrintList();
 
+
+-> Traversal of Singly Linked List
+
+Traversal in a linked list means visiting each node and performing operations like printing or processing the data.
+
+->Step by Step Apporach (Iterative Approach)
+
+    -> Initialize a pointer (current) to the head of the list.
+    -> Loop through the list using a while loop until the current becomes null.
+    -> Process each node (eg. Print its data, or perform any other logical operations)
+    -> Move to the next node by updating the current -> current.Next.
+
+-> Traversal of Singly Linked List (Recursive Approach)
+
+    -> First, we define a recursive method, to traverse singly linked list, which takes a node as a parameter.
+    -> In this function, the base case is that if the node is null we will return from the recusrsive method,
+    -> We then pass the head node as the parameter to the function.
+    -> Then, we access and process data/print data of the current node.
+    -> At last, we will make a recursive call to this function with the next node as the parameter.
+    
+    public void PrintUsingRecursion(Node<T> node)
+    {
+        if (node == null)
+        {
+            System.Console.WriteLine("Exiting Head is null..");
+            return;
+        }
+        System.Console.WriteLine("Print using recursion started");
+        System.Console.WriteLine(node.Data + " -> <-");
+        PrintUsingRecursion(node.Next);
+    }
+
+    //Using a public wrapper since Node<T> head is private. 
+    public void PrintUsingRecursion()
+    {
+        PrintUsingRecursion(head);  //calling the og method with argument inside a mthod since it wont be accessible in Main.
+    }
+
+-> Searching in a Singly Linked List
+
+Searching in a Singly Linked List refers to the process of looking for a specific element or value within the elements of the linked list.
+
+-> Step by Step Approach  (Iterative Approach) -> O(n) Time Complexity and O(1) space Complexity
+    -> Start from the head of the linked List.
+    -> Check each node's data.
+        -> If it matches the target value, return true (element found).
+        -> otherwise move to the next node.
+    -> Repeat untill the end null is reached.
+    -> If no match found return false.
+
+Follow Steps below to solve: 
+
+    -> Initialize a node pointer current = head;
+    -> while (current != null)
+        -> if(current!.Equals(data)) -> return true.
+        -> else current = current.Next.
+    -> return false.
+
+-> Recursive Approach O(n) Time Complexity, O (n) Space Complexity.
+
+    -> if (head == null) -> return false.
+    -> if (head.data == target) -> return true.
+    -> return the whole SearchMethod(head.Next, tar) inside the method.
+
+
+    // Again adding a wrapper since Node<T> head is private. 
+    public bool SeachUsingRecursion(T tar)
+    {
+        return SearchUsingRecursion(head, tar);
+    }
+
+    public bool SearchUsingRecursion(Node<T> head, T tar)
+    {
+        if (head == null)
+            return false;
+        if (head.Data!.Equals(tar))  // equivalent to (head == tar) but asks to ignore null and type conversion.
+            return true;
+        return SearchUsingRecursion(head.Next, tar);
+    }
+
+
+-> Find the length of a Singly Linked List
+
+Finding the length of a Singly Linked List means counting the total number of nodes.
+
+-> Step by Step Approach (Iterative Apporach)
+    -> Initialize a counter int Length =0;
+    -> start from the head and assign it to current. var current = head;
+    -> Traverse the list
+        -> Increment Length for each node. Length ++;
+        -> Move to the Next node -> current= current.Next;
+    -> if(current!=null) -> return Length;
+
+
+    public int CountNodes()
+    {
+        var current = head;
+        int length = 0;
+        while (current != null)
+        {
+            length++;
+            current = current.Next;
+        }
+        return length;
+    }
+-> Recursive Approach
+
+    -> If head== null -> return 0
+    -> return 1+ CountNodesRecursive(head.Next) (Call it within the function as recursion).
+
+    
+    public int CountNodesRecursive()
+    {
+        return CountNodesRecursive(head);
+    }
+    public int CountNodesRecursive(Node<T> head)
+    {
+        if (head == null)
+            return 0;
+        return 1 + CountNodesRecursive(head.Next);
+    }
+-> Insertion in Singly Linked List
+
+Insertion is a fundamental operation that involves adding new nodes to the list. There are several scenarios for insertion:
+
+    -> Insertion at the Beginning of Singly Linked List
+    -> https://media.geeksforgeeks.org/wp-content/uploads/20240726172733/Insertion-at-the-Beginning-of-Singly-Linked-List.webp
+        ->Step by Step Approach
+            -> Create a new node with the given value.
+            -> Set the next pointer of the new node to the current head.
+            -> Move the head to point to the new node.
+            -> Return the new head of the linked list.
+
+        -> Algorithm
+            -> create a new Node var newNode  = new Node<T>(data); {data is the parameter passed to this AddNodeFirstMethod of type T}
+            -> set newNode.Next = head; Assigning the Next value of the new Node to point to the current head.
+            -> head = newNode. Assigning the newNode as the head. 
+            -> Time Complexity O(1).
+            -> Space Complexity O(1).
+    
+                //Add to the beginning
+            public void AddFirst(T data)
+            {
+                var newNode = new Node<T>(data);
+                newNode.Next = head;
+                head = newNode;
+            }
+
+    -> Insertion at the end of Singly Linked List
+    -> https://media.geeksforgeeks.org/wp-content/uploads/20241022163601409037/Insertion-at-the-End-of-Singly-Linked-List.webp
+        ->Step by Step Approach
+            -> Create a new node with the given value.
+            -> Check if the list is empty:
+                -> If it is make the new node the head and return
+            -> Traverse the list untill the last node is reached.
+            -> Link the new node to the current last node by setting the current last node's next pointer to the new node.
+
+        -> Algorithm
+            -> create a new node var newNode = Node<T>(data); 
+            -> check if(head == null)
+                -> set newNode=head -> return
+            -> set var current = head in order to start from the beginning. (this pointer will start from head and move untill the tail is reached)
+            -> Traverse loop untill end is reached. while(current!=null) -> current = current.Next
+            -> at the end assign the Next of the current node to the newNode. current.Next = newNode;
+
+                //Add to the end
+            public void AddLast(T data)
+            {
+                var newNode = new Node<T>(data);
+                if (head == null)
+                {
+                    head = newNode;
+                    return;
+                }
+                var current = head;
+                while (current.Next != null)
+                {
+                    current = current.Next;
+                }
+                current.Next = newNode;
+            }
