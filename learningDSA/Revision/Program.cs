@@ -15,7 +15,67 @@ class Program
 {
     static void Main()
     {
+        #region Singly Linked List
 
+        var sll = new SinglyLinkedList<int>();
+        sll.AddLast(10);
+        sll.AddLast(20);
+        sll.AddFirst(30);
+        sll.PrintList();
+
+        System.Console.WriteLine("Search for 20");
+        System.Console.WriteLine(sll.Search(20));
+        System.Console.WriteLine("Search fpr 40");
+        System.Console.WriteLine(sll.Search(40));
+
+        sll.Delete(10);
+        sll.PrintList();
+
+        #endregion
+
+        #region Jagged Arrays
+
+        int[] Jan = new int[31];
+        int[] Feb = new int[29];
+        int[][] sales = new int[][] { Jan, Feb };
+        int  total;
+        double avg = 0.0;
+        sales[0][0] = 41;
+        sales[0][1] = 42;
+        sales[0][2] = 43;
+        sales[0][3] = 44;
+        sales[0][4] = 48;
+        sales[0][5] = 45;
+        sales[0][6] = 45;
+        sales[1][0] = 47;
+        sales[1][1] = 42;
+        sales[1][2] = 46;
+        sales[1][3] = 45;
+        sales[1][4] = 48;
+        sales[1][5] = 42;
+        sales[1][6] = 41;
+
+        for (int i = 0; i < 2; i++)
+        {
+            total = 0;
+            for (int j = 0; j <= 6; j++)
+            {
+                total += sales[i][j];
+            }
+            avg = total / 7;
+            System.Console.WriteLine($"Average Sales for Month: {i} is {avg}");
+        }
+        
+        #endregion
+        //Implementing the Linked List
+
+        LinkedListTut<string> node1 = new LinkedListTut<string>("John", null);
+        LinkedListTut<string> node2 = new LinkedListTut<string>("Matt", node1);
+        LinkedListTut<string> obj = node2.Next;
+
+        Console.WriteLine(node1.Item);           
+        Console.WriteLine(node2.Item);       
+        Console.WriteLine(obj.Item);              
 
         Collection course = new Collection();
         course.Add("JavaScript");

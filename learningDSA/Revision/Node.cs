@@ -2,11 +2,11 @@ using System;
 
 namespace Revision;
 
-public class Node
+public class Node<T>
 {
-    public int Data;
-    public Node Next;
-    public Node(int data)
+    public T Data { get; set; }
+    public Node<T> Next { get; set; }
+    public Node(T data)
     {
         this.Data = data;
         this.Next = null;

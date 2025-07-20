@@ -1,0 +1,345 @@
+A collection is a structured data type that stores data and provides operations for adding data to the collection, removing data from the collection, 
+updating data in the collection  as well as setting and returning values of different attributes of the collection.
+
+Collections can be broken down into two types, linear and non linear.
+
+linear collection is a list of elelemtns where one element follows the previous element.
+non linear collections hold elements that do not have positional order within the collection.
+
+There are two types of linear collection
+
+-> Direct Access Collections
+
+	->Arrays
+	->Strings
+	
+		String -> Direct access collection 
+
+	    ->Struct -> A struct is a datatype that holds data that may be o different datatypes.
+					Integer data type is a struct. 
+					
+					Example: 
+					public struct Name
+{
+    private string fname, lname, mname;
+    public Name(string first, string last, string middle)
+    {
+        fname = first;
+        lname = last;
+        mname = middle;
+    }
+
+    public string firstName
+    {
+        get
+        {
+            return fname;
+        }
+        set
+        {
+            fname = firstName;
+        }
+    }
+    public string lastName
+    {
+        get
+        {
+            return lname;
+        }
+        set
+        {
+            lname = lastName;
+        }
+
+    }
+    public string middleName
+    {
+        get
+        {
+            return mname;
+        }
+        set
+        {
+            mname = middleName;
+        }
+    }
+
+    public override string ToString()
+    {
+        return $"{fname},{mname},{lname}";
+    }
+    public string Initials()
+    {
+        return $"{fname.Substring(0, 1)}, {mname.Substring(0, 1)}, {lname.Substring(0,1)}";
+    }
+}
+
+  string[] users = { "John", "Matt" };
+        System.Console.WriteLine(users[0]);
+        System.Console.WriteLine(users[1]);
+
+        Name myName = new Name("Soumya", "Ghosh", "Deep");
+        string fullName = myName.ToString();
+        string initials = myName.Initials();
+
+        System.Console.WriteLine($"Full Name with Initials -> {initials} -> {fullName}");
+
+		
+-> Sequential Access Collection
+
+
+A collection is a structured data type that stores data and provides operations for adding data to the collection, removing data from the collection, 
+updating data in the collection  as well as setting and returning values of different attributes of the collection.
+
+Collections can be broken down into two types, linear and non linear.
+
+linear collection is a list of elelemtns where one element follows the previous element.
+non linear collections hold elements that do not have positional order within the collection.
+
+There are two types of linear collection
+
+-> Direct Access Collections
+
+	->Arrays
+	->Strings
+	
+		String -> Direct access collection 
+
+	    ->Struct -> A struct is a datatype that holds data that may be o different datatypes.
+					Integer data type is a struct. 
+					
+					Example: 
+					public struct Name
+{
+    private string fname, lname, mname;
+    public Name(string first, string last, string middle)
+    {
+        fname = first;
+        lname = last;
+        mname = middle;
+    }
+
+    public string firstName
+    {
+        get
+        {
+            return fname;
+        }
+        set
+        {
+            fname = firstName;
+        }
+    }
+    public string lastName
+    {
+        get
+        {
+            return lname;
+        }
+        set
+        {
+            lname = lastName;
+        }
+
+    }
+    public string middleName
+    {
+        get
+        {
+            return mname;
+        }
+        set
+        {
+            mname = middleName;
+        }
+    }
+
+    public override string ToString()
+    {
+        return $"{fname},{mname},{lname}";
+    }
+    public string Initials()
+    {
+        return $"{fname.Substring(0, 1)}, {mname.Substring(0, 1)}, {lname.Substring(0,1)}";
+    }
+}
+
+  string[] users = { "John", "Matt" };
+        System.Console.WriteLine(users[0]);
+        System.Console.WriteLine(users[1]);
+
+        Name myName = new Name("Soumya", "Ghosh", "Deep");
+        string fullName = myName.ToString();
+        string initials = myName.Initials();
+
+        System.Console.WriteLine($"Full Name with Initials -> {initials} -> {fullName}");
+
+		
+-> Sequential Access Collection -> A list that stores elements in sequantial order
+		-> Linear List -> Able to expand Dynamically
+			
+==============================================================================  Linked Lists	===================================================================================================
+
+Linked List is a fundamental data structure in cs.
+
+It consists of node which in turn consist of data, and a pointer to the next node
+It has sequental access meaning one needs to traverse from the beginning/ end node to reach a given node, unlike arrays which is contiguous and each element can be directly accessed
+using index. Linked list vs Arrays:
+
+Linked List:
+
+Data Structure: Non-contiguous
+Memory Allocation: Typically allocated one by one to individual elements
+Insertion/Deletion: Efficient
+Access: Sequential
+Array:
+
+Data Structure: Contiguous
+Memory Allocation: Typically allocated to the whole array
+Insertion/Deletion: Inefficient
+Access: Random	
+
+Now there are three types of linked Lists:
+Singly Linked List -> A Singly Linked List is consists of nodes where each node consists of data, and a pointer to the next node. The Pointer (also referred as next) to the last node is
+null, indicating the end of the list.
+
+diagram -> 
+
+
+[10 | Next] → [20 | Next] → [30 | null]
+  ↑            ↑             ↑
+ Head        Node2         Tail
+
+Basic Operations of Singly Linked List:
+-> Add (to End)
+-> Add (to Beginning)
+-> Search
+-> Delete
+-> Traverse
+
+| Operation | Time Complexity |
+| --------- | --------------- |
+| Add First | O(1)            |
+| Add Last  | O(n)            |
+| Search    | O(n)            |
+| Delete    | O(n)            |
+| Traverse  | O(n)            |
+
+
+Implementation: 
+
+Create a Generic Class Node<T> of type T. 
+-> Declare two properties/fields. 
+	-> Data of type T (generic)
+	-> pointer Next of type Node<T>
+
+using System;
+
+namespace Revision;
+
+public class Node<T>
+{
+    public T Data;
+    public Node<T> Next;
+    public Node(T data)
+    {
+        this.Data = data;
+        this.Next = null;
+    }
+
+}
+
+Create a  class SinglyLinkedList<T> to create the various operations above:
+ 
+public class SinglyLinkedList<T>
+{
+    private Node<T> head;
+
+    //Add to the end
+    public void AddLast(T data)
+    {
+        var newNode = new Node<T>(data);
+        if (head == null)
+        {
+            head = newNode;
+            return;
+        }
+        var current = head;
+        while (current.Next != null)
+        {
+            current = current.Next;
+        }
+        current.Next = newNode;
+    }
+    //Add to the beginning
+    public void AddFirst(T data)
+    {
+        var newNode = new Node<T>(data);
+        newNode.Next = head;
+        head = newNode;
+    }
+    //search for a value
+    public bool Search(T data)
+    {
+        var current = head;
+        while (current != null)
+        {
+            if (current.Data!.Equals(data)) // it means (current.Data.Equals(data)) ! -> is a null forgiving operator. It tells the compiler "I know current.Data isn't null, don't warn me"
+            {
+                return true;
+            }
+            current = current.Next;
+        }
+        return false;
+    }
+
+    //delete a node
+    public void Delete(T data)
+    {
+        if (head == null)
+            return;
+        if (head.Data!.Equals(data))
+        {
+            head = head.Next;
+            return;
+        }
+        var current = head;
+        while (current.Next != null)
+        {
+            if (current.Next.Data!.Equals(data))
+            {
+                current.Next = current.Next.Next;
+                return;
+            }
+            current = current.Next;
+        }
+    }
+
+    public void PrintList()
+    {
+        var current = head;
+        while (current != null)
+        {
+            System.Console.Write(current.Data + " -> ");
+            current = current.Next;
+        }
+        System.Console.WriteLine("null");
+    }
+}
+
+Implementing the SinglyLinkedList<T> class in Program.cs
+
+       var sll = new SinglyLinkedList<int>();
+        sll.AddLast(10);
+        sll.AddLast(20);
+        sll.AddFirst(30);
+        sll.PrintList();
+
+        System.Console.WriteLine("Search for 20");
+        System.Console.WriteLine(sll.Search(20));
+        System.Console.WriteLine("Search fpr 40");
+        System.Console.WriteLine(sll.Search(40));
+
+        sll.Delete(10);
+        sll.PrintList();
+
