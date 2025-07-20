@@ -17,6 +17,44 @@ class Program
     {
 
 
+        Collection course = new Collection();
+        course.Add("JavaScript");
+        course.Add("Python");
+        course.Add("C#");
+        course.Add("Java");
+        foreach (var c in course)
+        {
+            System.Console.Write(c+", ");
+        }
+        System.Console.WriteLine($"Number of courses -> {course.Count()}");
+
+        System.Console.WriteLine("Removing Python...");
+        course.Remove("Python");
+        System.Console.WriteLine($"Course count after removing python -> {course.Count()}");
+        System.Console.WriteLine("Final List of coursees");
+        foreach (var c in course)
+        {
+            System.Console.Write(c+", ");
+        }
+
+        System.Console.WriteLine("Clearin all courses...");
+        course.Clear();
+        System.Console.WriteLine("Checking if all courses removed..");
+        System.Console.WriteLine("Updated List");
+             foreach (var c in course)
+        {
+            System.Console.Write(c+", ");
+        }
+        //string
+        string[] users = { "John", "Matt" };
+        System.Console.WriteLine(users[0]);
+        System.Console.WriteLine(users[1]);
+
+        Name myName = new Name("Soumya", "Ghosh", "Deep");
+        string fullName = myName.ToString();
+        string initials = myName.Initials();
+
+        System.Console.WriteLine($"Full Name with Initials -> {initials} -> {fullName}");
 
         LinqLearn ll = new LinqLearn();
         var squareResult = ll.SquaresOfOddNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9]);
@@ -218,6 +256,8 @@ class Program
     }
 }
 
+
+
 class Arrays
 {
 
@@ -306,7 +346,7 @@ class Arrays
     public int ThirdMax(int[] nums)
     {
         int ThirdMax = int.MinValue;
-        return ThirdMax = nums.Distinct().ToArray().Length>2 ? nums.Distinct().OrderByDescending(e => e).Take(3).LastOrDefault():nums.Distinct().OrderByDescending(e=>e).FirstOrDefault();
+        return ThirdMax = nums.Distinct().ToArray().Length > 2 ? nums.Distinct().OrderByDescending(e => e).Take(3).LastOrDefault() : nums.Distinct().OrderByDescending(e => e).FirstOrDefault();
     }
 
     public IList<int> FindDisappearedNUmbers(int[] nums)
@@ -648,7 +688,7 @@ class Arrays
         int n = arr.Length;
         for (int i = 0; i < n - 1; i++)
         {
-            for (int j = i+1; j < n; j++)
+            for (int j = i + 1; j < n; j++)
             {
                 if (arr[i] + arr[j] == sum)
                 {
