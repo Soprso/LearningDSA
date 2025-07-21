@@ -8,6 +8,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Revision;
 using System.IO.Pipelines;
+using System.Data;
+using System.Security.Principal;
 
 
 
@@ -28,7 +30,12 @@ class Program
         sll.AddLast(6);
         System.Console.WriteLine("Printing nodes....");
         sll.PrintList();
-
+        sll.ReverseList();
+        System.Console.WriteLine("Reversing the list....");
+        sll.PrintList();
+        sll.ModifyAtSpecificPos(2, 999);
+        System.Console.WriteLine("Assigning 999 at position 2");
+        sll.PrintList();
         System.Console.WriteLine("Search for 20");
         System.Console.WriteLine(sll.Search(20));
         System.Console.WriteLine("Search fpr 40");
@@ -1339,7 +1346,7 @@ class BinarySearchLearn
         int n = arr.Length;
         for (int i = 0; i < n - 1; i++)
         {
-            for (int j = 0; j < n-1-i; j++)
+            for (int j = 0; j < n - 1 - i; j++)
             {
                 if (arr[j] > arr[j + 1])
                 {
@@ -1382,4 +1389,5 @@ class BinarySearchLearn
             System.Console.WriteLine("Element not found");
         }
     }
+
 }

@@ -196,4 +196,82 @@ public class SinglyLinkedList<T>
         head = DeleteNodeTail(head);
         return head;
     }
+
+    public Node<T> DeleteAtSpecificPosition(int pos, Node<T> head)
+    {
+        if (head == null || pos <= 0)
+            return head;
+        var current = head;
+        Node<T> prev = null;
+        if (pos == 1)
+        {
+            head = current.Next;
+            return head;
+        }
+        for (int i = 1; i < pos && current != null; i++)
+        {
+            prev = current;
+            current = current.Next;
+        }
+        if (current != null)
+        {
+            prev.Next = current.Next;
+        }
+        return head;
+    }
+    public Node<T> DeleteAtSpecificPosition(int pos)
+    {
+        head = DeleteAtSpecificPosition(pos, head);
+        return head;
+    }
+
+    public Node<T> ModifyAtSpecificPos(Node<T> head, int pos, T newValue)
+    {
+        if (pos <= 0)
+        {
+            System.Console.WriteLine("Invalid position");
+            return head;
+        }
+        var current = head;
+        int i = 1;
+        while (i < pos && current != null)
+        {
+            current = current.Next;
+            i++;
+        }
+        if (current == null)
+        {
+            System.Console.WriteLine("Position out of bounds");
+            return head;
+        }
+        current.Data = newValue;
+        return head;
+
+    }
+
+    public Node<T> ModifyAtSpecificPos(int pos, T newValue)
+    {
+        head = ModifyAtSpecificPos(head, pos, newValue);
+        return head;
+    }
+
+    public Node<T> ReverseList()
+    {
+        if (head == null || head.Next == null)
+        {
+            return head;
+        }
+        Node<T> prevNode = null;
+        var currentNode = head;
+
+        while (currentNode != null)
+        {
+            Node<T> nextNode = currentNode.Next; // store the next node  {1 -> 2 -> 3 -> 4}
+            currentNode.Next = prevNode; // reverse the current node's pointer 
+            prevNode = currentNode; // move previous to current
+            currentNode = nextNode; // move to next node
+        }
+        head = prevNode;
+        return head;
+    }
 }

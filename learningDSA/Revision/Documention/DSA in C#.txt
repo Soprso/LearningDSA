@@ -668,8 +668,107 @@ deletion involves removing a node from the linked list. Similar to insertion, th
 
         Algorithm
             -> if head == null return head.
+            -> if position <=0 return head.
             -> var current = head.
+            -> var prev =null.
             -> if position ==1 
                 -> head = current.next.
                 -> return head.
-            -> for(int i=0;i< position -1;i++) -> var prev = current
+            -> for(int i=1;i< position && current!=null;i++) 
+                -> prev = current 
+                -> current = current.Next.
+            -> if current!=null 
+                -> prev.Next -> current.Next
+            -> return head.
+
+             public Node<T> DeleteAtSpecificPosition(int pos, Node<T> head)
+            {
+                if (head == null || pos <= 0)
+                    return head;
+                var current = head;
+                Node<T> prev = null;
+                if (pos == 1)
+                {
+                    head = current.Next;
+                    return head;
+                }
+                for (int i = 1; i < pos && current != null; i++)
+                {
+                    prev = current;
+                    current = current.Next;
+                }
+                if (current != null)
+                {
+                    prev.Next = current.Next;
+                }
+                return head;
+            }
+            public Node<T> DeleteAtSpecificPosition(int pos)
+            {
+                head = DeleteAtSpecificPosition(pos, head);
+                return head;
+            }
+
+Modify a SinglyLinkedList
+Updating a SinglyLinkedList means modifying the value of a node at a given position
+    Step by Step approach
+        -> Start from the head of the list
+        -> Traverse to the required position (move current node to position)
+        -> Check if the position is valid
+            -> if the position is out of bounds return message
+        -> Update the node's data with new value
+        -> return the modified list.
+
+    Algorithm
+        -> if pos<=0, return with error message.
+        -> var current = head.
+        -> i =1.
+        -> while i< pos and current != null
+            -> current=current.Next.
+            -> i++.
+        -> if current==null 
+            -> pos out of bounds, return error message
+        -> assign newValue from the argument to current.Data= newValue.
+        -> return head.
+
+        public Node<T> ModifyAtSpecificPos(Node<T> head, int pos)
+        {
+            if (pos <= 0)
+            {
+                System.Console.WriteLine("Invalid position");
+                return head;
+            }
+            var current = head;
+            int i = 1;
+            while (i < pos && current != null)
+            {
+                current = current.Next;
+                i++;
+            }
+            if (current == null)
+            {
+                System.Console.WriteLine("Position out of bounds");
+                return head;
+            }
+            return head;
+        }
+
+        public Node<T> ModifyAtSpecificPos(int pos)
+        {
+            head = ModifyAtSpecificPos(head, pos);
+            return head;
+        }
+
+Reversing a SinglyLinkedList
+Reversing a linked list means changing the direction of the pointers so that the last node becomes the new head.
+    Step by step Approach
+        ->Initialize three pointers 
+            -> prev = null (to track the prev node)
+            -> current = head (starting point)
+            -> next = null (to store the next node temporarily)
+        -> Iterate through the list
+            -> store next = current.next (save the next node)
+            -> reverse the link: current.next = prev
+            -> move prev and current forward (prev = current, current =next).
+            -> update head to prev (new head is the last node).
+        -> return head
