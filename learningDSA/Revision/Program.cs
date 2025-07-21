@@ -21,14 +21,21 @@ class Program
         sll.AddLast(10);
         sll.AddLast(20);
         sll.AddFirst(30);
+        sll.AddLast(1);
+        sll.AddLast(12);
+        sll.AddLast(3);
+        sll.AddLast(4);
+        sll.AddLast(6);
+        System.Console.WriteLine("Printing nodes....");
         sll.PrintList();
 
         System.Console.WriteLine("Search for 20");
         System.Console.WriteLine(sll.Search(20));
         System.Console.WriteLine("Search fpr 40");
         System.Console.WriteLine(sll.Search(40));
-
-        sll.Delete(10);
+        System.Console.WriteLine("Deleting node head ......");
+        sll.DeleteNodeHead();
+        System.Console.WriteLine("Printing after deleting node head....");
         sll.PrintList();
         sll.PrintUsingRecursion();
         System.Console.WriteLine(sll.SeachUsingRecursion(20));

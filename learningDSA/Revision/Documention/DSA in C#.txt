@@ -582,3 +582,94 @@ Insertion is a fundamental operation that involves adding new nodes to the list.
             {
                 head= InsertAtPos(head, pos, data);
             }
+
+Deletion in Singly Linked List
+
+deletion involves removing a node from the linked list. Similar to insertion, there are are different scenarios for deletion.
+    -> Deletion at the beginning of Singly Linked List
+    -> https://media.geeksforgeeks.org/wp-content/uploads/20241022163937663413/Deletion-at-beginning-.webp
+        Step by step approach:
+            -> Check if the head is null
+                -> If it is return null, the list is empty
+            -> store the head node in a temp variable
+            -> move the head pointer to the next node.
+            -> delete the temporary node.
+            -> return the new head of the linked list.
+        Algorithm:
+            -> if head == null -> return null.
+            -> head = head.Next
+            -> return head;
+            -> Time Complexity O(1)
+            -> Space Complexity O(1)
+        
+            public Node<T> DeleteNodeHead(Node<T> head)
+            {
+                if (head == null)
+                    return null;
+                head = head.Next;
+                return head;
+            }
+
+            public Node<T> DeleteNodeHead()
+            {
+                head = DeleteNodeHead(head);
+                return head;
+            }
+    
+    -> Deletion at the end of Singly Linked List
+    -> https://media.geeksforgeeks.org/wp-content/uploads/20241022164030481275/Deletion-At-End.webp
+        Step by Step approach
+            -> Check if the head is null
+                -> If it is return null (the list is empty)
+            -> Check if the head's next is null (only one node in the list i.e the head)
+                -> If true, delete the head and return null
+            -> Traverse the list to find the second last node(second_last)
+            -> Delete the last node( node after second_last)
+            -> Set the Next pointer of the second_last node to null.
+            -> return the head of the linked list.
+
+        Algorithm
+            -> if head == null -> return null.
+            -> if head.Next == null ->return null.
+            -> assign var secondLast = head.
+            -> while secondLast.Next.Next!=null -> secondLast= secondLast.Next //Traverse the list
+            -> secondLast.Next = null.
+            -> return head.
+        
+            public Node<T> DeleteNodeTail(Node<T> head)
+            {
+                if (head == null || head.Next == null)
+                    return null;
+                var secondLast = head;
+                while (secondLast.Next.Next != null)
+                {
+                    secondLast = secondLast.Next;
+                }
+                secondLast.Next = null;
+                return head;
+            }
+
+            public Node<T> DeleteNodeTail()
+            {
+                head = DeleteNodeTail(head);
+                return head;
+            }
+
+    -> Deletion at a specific position of a SinglyLinkedList
+    -> https://media.geeksforgeeks.org/wp-content/uploads/20241022164248836160/Deletion-specific-At-End--.webp
+        Step by steo Approach
+            -> check if the list is empty or the position is invalid return if solve
+            -> if the head needs to be deleted update the head and delete node
+            -> travserse to the node before the position to be deleted.
+            -> if the position is out of range return
+            -> store the node to be deleted.
+            -> update the links to bypass the node.
+            -> delete the stored node.
+
+        Algorithm
+            -> if head == null return head.
+            -> var current = head.
+            -> if position ==1 
+                -> head = current.next.
+                -> return head.
+            -> for(int i=0;i< position -1;i++) -> var prev = current

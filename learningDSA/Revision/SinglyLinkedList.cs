@@ -161,6 +161,39 @@ public class SinglyLinkedList<T>
     //use a wrapper method again since Node<T> head is private
     public void InsertAtPos(int pos, T data)
     {
-        head= InsertAtPos(head, pos, data);
+        head = InsertAtPos(head, pos, data);
+    }
+
+    public Node<T> DeleteNodeHead(Node<T> head)
+    {
+        if (head == null)
+            return null;
+        head = head.Next;
+        return head;
+    }
+
+    public Node<T> DeleteNodeHead()
+    {
+        head = DeleteNodeHead(head);
+        return head;
+    }
+
+    public Node<T> DeleteNodeTail(Node<T> head)
+    {
+        if (head == null || head.Next == null)
+            return null;
+        var secondLast = head;
+        while (secondLast.Next.Next != null)
+        {
+            secondLast = secondLast.Next;
+        }
+        secondLast.Next = null;
+        return head;
+    }
+
+    public Node<T> DeleteNodeTail()
+    {
+        head = DeleteNodeTail(head);
+        return head;
     }
 }
